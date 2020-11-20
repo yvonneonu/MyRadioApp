@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean playWhenReady = true;
     private int currentWindow = 0;
     private long playBackPosition = 0;
+    PlayerView playerV;
 
 
 
@@ -33,35 +34,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (Util.SDK_INT >= 24) {
+
             initializePlayer();
-        }
+
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if ((Util.SDK_INT < 24 || player == null)) {
+
             initializePlayer();
-        }
+
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (Util.SDK_INT < 24){
+
             releasePlayer();
-        }
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (Util.SDK_INT >= 24){
+
             releasePlayer();
-        }
+
     }
 
 
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializePlayer() {
         player = new SimpleExoPlayer.Builder(this).build();
         MediaItem mediaItem = MediaItem.fromUri(getString(R.string.url));
+        playerV.setPlayer(player);
         player.setMediaItem(mediaItem);
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playBackPosition);
