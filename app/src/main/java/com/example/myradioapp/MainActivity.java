@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView text = findViewById(R.id.textName);
-        PlayerView playerView = findViewById(R.id.lineVisualiser);
+        playerV = findViewById(R.id.lineVisualiser);
         text.setText("coolFm");
 
     }
@@ -34,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-            initializePlayer();
-
+        initializePlayer();
     }
 
     @Override
